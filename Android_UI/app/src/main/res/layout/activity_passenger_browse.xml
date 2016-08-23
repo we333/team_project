@@ -9,4 +9,201 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dongzhe.mycarpool.PassengerBrowse">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="data:"
+        android:id="@+id/textView20"
+        android:layout_marginTop="86dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText_data_n"
+        android:layout_alignBottom="@+id/textView20"
+        android:layout_toEndOf="@+id/textView20" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="from:"
+        android:id="@+id/textView21"
+        android:layout_alignBottom="@+id/editText_from_n"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_from_n"
+        android:layout_below="@+id/editText_data_n"
+        android:layout_toEndOf="@+id/textView21" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="to:"
+        android:id="@+id/textView22"
+        android:layout_alignBottom="@+id/editText_from_n"
+        android:layout_toEndOf="@+id/editText_from_n" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_to_n"
+        android:layout_alignBottom="@+id/textView22"
+        android:layout_toEndOf="@+id/textView22" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/button_p_seatch"
+        android:layout_alignBottom="@+id/editText_to_n"
+        android:layout_toEndOf="@+id/editText_to_n"
+        android:layout_marginStart="66dp" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"
+        android:layout_below="@+id/editText_from_n"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="車主名："
+        android:id="@+id/textView23"
+        android:layout_below="@+id/line"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="52dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="data:"
+        android:id="@+id/textView24"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="from:"
+        android:id="@+id/textView25"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/textView24"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="to:"
+        android:id="@+id/textView26"
+        android:layout_alignBottom="@+id/textView25"
+        android:layout_alignStart="@+id/textView22" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="値段："
+        android:id="@+id/textView27"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/textView28"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="座席："
+        android:id="@+id/textView28"
+        android:layout_below="@+id/textView25"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="コメント："
+        android:id="@+id/textView29"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/textView27"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_carer_name"
+        android:layout_above="@+id/textView25"
+        android:layout_toEndOf="@+id/textView23" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_data_s"
+        android:layout_above="@+id/textView25"
+        android:layout_toEndOf="@+id/textView24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_from_s"
+        android:layout_alignBottom="@+id/textView25"
+        android:layout_toEndOf="@+id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_to_s"
+        android:layout_alignTop="@+id/textView26"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_seat_s"
+        android:layout_above="@+id/textView27"
+        android:layout_toEndOf="@+id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_price_s"
+        android:layout_alignBottom="@+id/textView27"
+        android:layout_toEndOf="@+id/textView27" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_comment_s"
+        android:layout_alignBottom="@+id/textView29"
+        android:layout_toEndOf="@+id/textView29" />
+
 </RelativeLayout>
