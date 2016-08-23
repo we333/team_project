@@ -22,7 +22,7 @@ using namespace std;
 #define IP ("192.168.1.102")
 #define PORT (11111)
 #define EPOLL_SIZE (4096)
-#define	myErr	{cout<<__FUNCTION__<<": "<<__LINE__<<"line"<<endl; perror(" "); exit(-1);}
+#define	myErr	{cout<<__FUNCTION__<<": "<<__LINE__<<"line"<<endl; perror(" ");/* exit(-1) */;}
 #define Try(x)	{if(-1 == (x)) myErr;}
 #define SPLIT ("|")
 
