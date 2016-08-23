@@ -42,6 +42,7 @@ void message_route(int sockfd, vector<string> vs);
 	void Chat(int sockfd, vector<string> vs);
 	void Search(int sockfd, vector<string> vs);
 	void Upload(int sockfd, vector<string> vs);
+	void Sendfile(int sockfd, vector<string> vs);
 
 typedef struct
 {
@@ -56,6 +57,7 @@ Service service[] =
 	{"chat",		Chat},
 	{"search",		Search},
 	{"upload", 		Upload},
+	{"sendfile",	Sendfile},
 };
 
 int main(int ac, char *av[])
@@ -155,6 +157,7 @@ void Login(int sockfd, vector<string> vs)
 		Try(send(sockfd, "success\n", BUFSIZ, 0))
 	else
 		Try(send(sockfd, "fail\n", BUFSIZ, 0))
+
 }
 
 void Register(int sockfd, vector<string> vs)
@@ -223,4 +226,28 @@ void Upload(int sockfd, vector<string> vs)
 		Try(send(sockfd, "success\n", BUFSIZ, 0))
 	else
 		Try(send(sockfd, "fail\n", BUFSIZ, 0))
+}
+
+
+#define SEND_FILE ("target.png")
+#define RECV_FILE ("newfile.png")
+
+void Sendfile(int sockfd, vector<string> vs)
+{
+	set_blocking(sockfd);
+	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
+
+	FILE *f;
+	if(NULL == (f = fopen(RECV_FILE, "wb+")))
+		myErr;
+
+	int len = 0;
+	while(len = recv(sockfd, buf, BUFSIZ, 0))
+	{
+		if(len < 0)	myErr;
+		if(len > fwrite(buf, sizeof(char), len, f))
+			myErr;
+	}
+
+	fclose(f);
 }

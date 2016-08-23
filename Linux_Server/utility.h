@@ -19,7 +19,8 @@
 
 using namespace std;
 
-#define IP ("192.168.1.102")
+//#define IP ("192.168.1.102")
+#define IP ("127.0.0.1")
 #define PORT (11112)
 #define EPOLL_SIZE (4096)
 #define	myErr	{cout<<__FUNCTION__<<": "<<__LINE__<<"line"<<endl; perror(" ");/* exit(-1) */;}
@@ -103,6 +104,11 @@ int make_client_socket(const char *ip, int port)
 void set_noblocking(int fd)
 {
 	fcntl(fd, F_SETFL, fcntl(fd, F_GETFD, 0) | O_NONBLOCK);
+}
+
+void set_blocking(int fd)
+{
+	fcntl(fd, F_SETFL, fcntl(fd, F_GETFD, 0));
 }
 
 void epfd_add(int epollfd, int fd, bool et)
