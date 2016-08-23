@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_7f0355f12d09b7d8d2e6bc49e536170511c7542c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="bf39947b0733618dfa6cbcedd47642a4f4b7b1bd">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_059c847f1d385428296c9ab264cd567e75bc59b4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\rbnwxj\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_89d42353274e31cd35eb35ec494a8f8021faf813\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_eebd1e57638bf7c72e68d02236c31ad5592b5ca3\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e02fde2ba1be7831fbd4f05d88dd0feb525116e7">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_5a4c46757af17ca41e8487e8eea1cfd28c93a472\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_eaa342bc6ec7ebcdf8b14002879f49e460753a3f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_b629b4ae735bec6294483019d5dca08f3bf8d066\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\rbnwxj\team_project\Android_UI\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_e84a1b4c34b18bb07326d1e131e005ff2f26eb0a\classes.dex" />
+    </item>
+
+</items>
