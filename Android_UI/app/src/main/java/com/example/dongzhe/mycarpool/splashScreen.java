@@ -24,7 +24,6 @@ public class splashScreen extends AppCompatActivity {
         anima.setAnimationListener(new AnimationImpl());
     }
 
-
     private class AnimationImpl implements Animation.AnimationListener {
 
         @Override
