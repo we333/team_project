@@ -1,3 +1,0 @@
-CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
-CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\PassengerMain$override.class
-CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\PassengerBrowse$override.class

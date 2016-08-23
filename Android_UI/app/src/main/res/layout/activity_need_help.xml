@@ -66,4 +66,12 @@
         android:layout_below="@+id/editText_id"
         android:layout_alignStart="@+id/editText_id" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="発送"
+        android:id="@+id/button_send"
+        android:layout_alignBottom="@+id/editText_mail"
+        android:layout_toEndOf="@+id/editText_mail" />
+
 </RelativeLayout>
