@@ -7,48 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/ll_today"
     tools:context="com.example.dongzhe.mycarpool.DriverRaiseActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/editText11"
-            android:layout_alignBottom="@+id/textView14"
-            android:layout_toEndOf="@+id/textView14" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/editText12"
-            android:layout_above="@+id/textView15"
-            android:layout_toEndOf="@+id/textView18" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/editText13"
-            android:layout_alignBottom="@+id/textView15"
-            android:layout_toStartOf="@+id/textView18" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/editText14"
-            android:layout_above="@+id/textView17"
-            android:layout_toEndOf="@+id/textView16" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -126,5 +87,40 @@
             android:layout_below="@+id/textView17"
             android:layout_alignStart="@+id/textView17"
             android:layout_marginTop="97dp" />
-    </RelativeLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText11"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText12"
+        android:layout_above="@+id/textView15"
+        android:layout_toEndOf="@+id/textView18" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText13"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_toStartOf="@+id/textView18" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText14"
+        android:layout_above="@+id/textView17"
+        android:layout_toEndOf="@+id/textView16" />
 </RelativeLayout>

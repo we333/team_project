@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dongzhe.mycarpool">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,12 +22,10 @@
         <activity android:name=".NeedHelp" />
         <activity android:name=".NewPassword" />
         <activity android:name=".DriverMain" />
-        <activity android:name=".driver_browse" />
-        <activity android:name=".DriverImformationActivity" />
-        <activity android:name=".DriverRaiseActivity" />
         <activity android:name=".PassengerBrowse" />
         <activity android:name=".PassengerImformation" />
         <activity android:name=".PassengerMain"></activity>
+        <activity android:name=".Client"></activity>
     </application>
 
 </manifest>

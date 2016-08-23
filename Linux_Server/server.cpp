@@ -143,7 +143,7 @@ void message_route(int sockfd, vector<string> vs)
 		if(service[i].cmd == vs[0])
 			{service[i].func(sockfd, vs); return;}	// command route
 	
-	Try(send(sockfd, "undefined cmd\r\n", BUFSIZ, 0))
+	Try(send(sockfd, "undefined\n", BUFSIZ, 0))
 }
 
 void Login(int sockfd, vector<string> vs)
@@ -152,9 +152,9 @@ void Login(int sockfd, vector<string> vs)
 	usr.name = vs[1];
 	usr.pwd = vs[2];
 	if(wesql.Login(usr, sockfd))		// 传入clientfd更新数据库信息,用于聊天
-		Try(send(sockfd, "login success\n\n", BUFSIZ, 0))
+		Try(send(sockfd, "success\n", BUFSIZ, 0))
 	else
-		Try(send(sockfd, "login fail\n", BUFSIZ, 0))
+		Try(send(sockfd, "fail\n", BUFSIZ, 0))
 }
 
 void Register(int sockfd, vector<string> vs)
@@ -164,9 +164,9 @@ void Register(int sockfd, vector<string> vs)
 	usr.pwd = vs[2];
 	usr.email = vs[3];
 	if(wesql.Register(usr))
-		Try(send(sockfd, "register success\n", BUFSIZ, 0))
+		Try(send(sockfd, "success\n", BUFSIZ, 0))
 	else
-		Try(send(sockfd, "register fail\n", BUFSIZ, 0))
+		Try(send(sockfd, "fail\n", BUFSIZ, 0))
 }
 
 void Chat(int sockfd, vector<string> vs)
@@ -199,7 +199,7 @@ void Search(int sockfd, vector<string> vs)
 	db_res = wesql.Search(info);
 
 	if(0 == db_res.size())
-		Try(send(sockfd, "no search results\n", BUFSIZ, 0));
+		Try(send(sockfd, "noresults\n", BUFSIZ, 0));
 
 	string msg;
 	vector<string>::iterator it;
@@ -220,7 +220,7 @@ void Upload(int sockfd, vector<string> vs)
 	info.seat = vs[6];
 	info.comment = vs[7];
 	if(wesql.Upload(info))
-		Try(send(sockfd, "upload success\n", BUFSIZ, 0))
+		Try(send(sockfd, "success\n", BUFSIZ, 0))
 	else
-		Try(send(sockfd, "upload fail\n", BUFSIZ, 0))
+		Try(send(sockfd, "fail\n", BUFSIZ, 0))
 }
