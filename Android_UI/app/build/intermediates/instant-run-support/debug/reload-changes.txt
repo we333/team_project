@@ -1,0 +1,12 @@
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\Register$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$string$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$mipmap$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$integer$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\splashScreen$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$layout$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\android\support\v7\appcompat\R$id$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$id$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$style$override.class
+CHANGED,C:\Users\dongzhe\AndroidStudioProjects\MyCarpool\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\dongzhe\mycarpool\R$styleable$override.class
