@@ -24,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
         btn1 = (Button) findViewById(R.id.button_diver);
         btn2 = (Button) findViewById(R.id.button_noru);
         btn3=(Button) findViewById(R.id.button_needhelp);
@@ -115,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... params) {
             String bk;
-            Integer res=0;
+            Integer res=1;
             try {
 
                 bk = ct.start("login|"+get_n+"|"+get_p);

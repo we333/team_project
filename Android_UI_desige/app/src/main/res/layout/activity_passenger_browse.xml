@@ -13,8 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search"
-        android:id="@+id/button_p_seatch"
+        android:id="@+id/button_p_search"
         android:layout_below="@+id/textView23"
+
         android:layout_alignEnd="@+id/editText_search_to" />
 
     <View
@@ -22,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line"
-        android:layout_below="@+id/button_p_seatch"
+        android:layout_below="@+id/button_p_search"
         android:layout_alignEnd="@+id/editText_search_to"
         android:layout_marginTop="33dp" />
 
@@ -40,11 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="   車主名        date          from           to           price         seat         comment"
+        android:text="車主名"
         android:id="@+id/textView20"
+        android:layout_marginTop="37dp"
         android:layout_below="@+id/line"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="41dp" />
+        android:layout_alignEnd="@+id/button_pass_car" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,7 +97,191 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText_search_to"
-        android:layout_above="@+id/button_p_seatch"
+        android:layout_above="@+id/button_p_search"
         android:layout_toEndOf="@+id/textView23" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="date"
+        android:id="@+id/textView25"
+        android:layout_alignTop="@+id/textView26"
+        android:layout_toStartOf="@+id/textView26"
+        android:layout_marginEnd="53dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="from"
+        android:id="@+id/textView26"
+        android:layout_above="@+id/textView_pass_output"
+        android:layout_toStartOf="@+id/textView21" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="to"
+        android:id="@+id/textView27"
+        android:layout_alignTop="@+id/textView26"
+        android:layout_alignStart="@+id/editText_search_from" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="price"
+        android:id="@+id/textView28"
+        android:layout_alignTop="@+id/textView27"
+        android:layout_toStartOf="@+id/textView29"
+        android:layout_marginEnd="59dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="seat"
+        android:id="@+id/textView29"
+        android:layout_alignTop="@+id/textView28"
+        android:layout_alignEnd="@+id/textView23" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="comment"
+        android:id="@+id/textView30"
+        android:layout_marginEnd="36dp"
+        android:layout_alignTop="@+id/textView29"
+        android:layout_alignEnd="@+id/button_p_search" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/button_pass_car"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/textView_pass_output"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_s_date"
+        android:layout_alignTop="@+id/button_pass_car"
+        android:layout_alignStart="@+id/textView25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_from"
+        android:layout_below="@+id/textView_pass_output"
+        android:layout_toEndOf="@+id/textView25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_to"
+        android:layout_below="@+id/textView_pass_output"
+        android:layout_toEndOf="@+id/textView21" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_price"
+        android:layout_alignTop="@+id/textView_p_to"
+        android:layout_alignStart="@+id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_seat"
+        android:layout_alignTop="@+id/textView_p_price"
+        android:layout_toEndOf="@+id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_comment"
+        android:layout_alignTop="@+id/textView_p_seat"
+        android:layout_alignStart="@+id/textView30" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/button_pass_car2"
+        android:layout_below="@+id/button_pass_car"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="37dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_date2"
+        android:layout_alignTop="@+id/button_pass_car2"
+        android:layout_alignStart="@+id/textView_s_date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_from2"
+        android:layout_alignTop="@+id/textView_p_date2"
+        android:layout_toEndOf="@+id/textView25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_to2"
+        android:layout_alignTop="@+id/textView_p_from2"
+        android:layout_alignStart="@+id/textView_p_to" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_price2"
+        android:layout_alignTop="@+id/textView_p_to2"
+        android:layout_alignStart="@+id/textView_p_price" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_seat2"
+        android:layout_alignTop="@+id/textView_p_price2"
+        android:layout_toEndOf="@+id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/textView_p_comment2"
+        android:layout_alignTop="@+id/textView_p_seat2"
+        android:layout_alignStart="@+id/textView_p_comment" />
 
 </RelativeLayout>
