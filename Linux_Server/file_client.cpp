@@ -1,7 +1,6 @@
 #include "utility.h"
 
-#define SEND_FILE ("target.png")
-#define RECV_FILE ("newfile.png")
+#define SEND_FILE ("pushfile|target|png")
 
 int main(int ac, char *av[])
 {
@@ -10,10 +9,10 @@ int main(int ac, char *av[])
 	char buf2[BUFSIZ]; bzero(buf2, BUFSIZ);
 
 	FILE *f, *f2;
-	if(NULL == (f = fopen(SEND_FILE, "rb")))
+	if(NULL == (f = fopen("target.png", "rb")))
 		myErr;
 
-	Try(send(sockfd, "sendfile|.png|savefile", sizeof("sendfile|.png|savefile"), 0))
+	Try(send(sockfd, SEND_FILE, sizeof(SEND_FILE), 0))
 
 	int len = 0;
 	while(len = fread(buf, sizeof(char), BUFSIZ, f))

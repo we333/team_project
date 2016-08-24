@@ -42,8 +42,8 @@ void message_route(int sockfd, vector<string> vs);
 	void Chat(int sockfd, vector<string> vs);
 	void Search(int sockfd, vector<string> vs);
 	void Upload(int sockfd, vector<string> vs);
-	void Sendfile(int sockfd, vector<string> vs);
-	void Backfile(int sockfd, vector<string> vs);
+	void recv_file_from_client(int sockfd, vector<string> vs);
+	void send_file_to_client(int sockfd, vector<string> vs);
 
 typedef struct
 {
@@ -53,13 +53,13 @@ typedef struct
 
 Service service[] = 
 {
-	{"login", 		Login},
-	{"register", 	Register},
-	{"chat",		Chat},
-	{"search",		Search},
-	{"upload", 		Upload},
-	{"sendfile",	Sendfile},
-	{"backfile",	Backfile},
+	{"login", 		Login 						},
+	{"register", 	Register 					},
+	{"chat",		Chat 						},
+	{"search",		Search 						},
+	{"upload", 		Upload 						},
+	{"pushfile",	recv_file_from_client		},
+	{"pullfile",	send_file_to_client			},
 };
 
 int main(int ac, char *av[])
@@ -159,7 +159,6 @@ void Login(int sockfd, vector<string> vs)
 		Try(send(sockfd, "success\n", BUFSIZ, 0))
 	else
 		Try(send(sockfd, "fail\n", BUFSIZ, 0))
-
 }
 
 void Register(int sockfd, vector<string> vs)
@@ -231,16 +230,15 @@ void Upload(int sockfd, vector<string> vs)
 }
 
 /**********************************
-	receive file from client
-	vs[1]:file type
-	vs[2]:file name
+	vs[1]:file name
+	vs[2]:file type
 **********************************/
-void Sendfile(int sockfd, vector<string> vs)
+void recv_file_from_client(int sockfd, vector<string> vs)
 {
 	set_blocking(sockfd);
 	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
 	FILE *f;
-	string filename = FILE_PATH + vs[2] + vs[1];
+	string filename = FILE_PATH + vs[1] + "." + vs[2];
 
 	if(NULL == (f = fopen(filename.c_str(), "wb+")))
 		myErr;
@@ -258,17 +256,16 @@ void Sendfile(int sockfd, vector<string> vs)
 }
 
 /**********************************
-	client's request: send file to client
-	vs[1]:file type
-	vs[2]:file name
+	vs[1]:file name
+	vs[2]:file type
 **********************************/
-void Backfile(int sockfd, vector<string> vs)
+void send_file_to_client(int sockfd, vector<string> vs)
 {
 	set_blocking(sockfd);
 	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
 
 	FILE *f;
-	string filename = FILE_PATH + vs[2] + vs[1];
+	string filename = FILE_PATH + vs[1] + "." + vs[2];
 
 	if(NULL == (f = fopen(filename.c_str(), "rb+")))
 		myErr;
