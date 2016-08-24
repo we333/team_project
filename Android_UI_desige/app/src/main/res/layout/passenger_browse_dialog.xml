@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/LinearLayout1"
+    android:weightSum="1">
+    <RelativeLayout
+        android:id="@+id/LinearLayout2"
+        android:layout_height="wrap_content"
+        android:layout_width="511dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="車主名"
+            android:textSize="35dp"
+            android:id="@+id/TextView_di_name"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/imageView_dia_picture" />
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/imageView_dia_picture"
+            android:src="@drawable/logo"
+            android:layout_weight="1"
+            android:layout_marginLeft="300dp"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="58dp" />
+    </RelativeLayout>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="521dp"
+        android:text="zjy680520@gmail.com"
+        android:id="@+id/TextView_dia_mail"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        />
+    <RelativeLayout
+        android:id="@+id/LinearLayout3"
+        android:layout_height="wrap_content"
+        android:layout_width="512dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.05">
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/Button_sendmail"
+            android:text="発送"
+            android:layout_marginLeft="175dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="80dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText_sendmail_in"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/Button_sendmail"
+            android:layout_marginEnd="60dp" />
+    </RelativeLayout>
+</LinearLayout>
