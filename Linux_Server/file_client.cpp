@@ -13,7 +13,7 @@ int main(int ac, char *av[])
 	if(NULL == (f = fopen(SEND_FILE, "rb")))
 		myErr;
 
-	Try(send(sockfd, "sendfile", sizeof("sendfile"), 0))
+	Try(send(sockfd, "sendfile|.png|savefile", sizeof("sendfile|.png|savefile"), 0))
 
 	int len = 0;
 	while(len = fread(buf, sizeof(char), BUFSIZ, f))

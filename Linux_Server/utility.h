@@ -21,12 +21,12 @@ using namespace std;
 
 #define IP ("192.168.1.102")
 //#define IP ("127.0.0.1")
-#define PORT (11112)
-#define EPOLL_SIZE (4096)
-#define	myErr	{cout<<__FUNCTION__<<": "<<__LINE__<<"line"<<endl; perror(" ");/* exit(-1) */;}
-#define Try(x)	{if(-1 == (x)) myErr;}
-#define SPLIT ("|")
-#define FILE_PATH ("\\files\\")
+#define PORT 		(11112)
+#define EPOLL_SIZE 	(4096)
+#define	myErr		{cout<<__FUNCTION__<<": "<<__LINE__<<"line"<<endl; perror(" ");/* exit(-1) */;}
+#define Try(x)		{if(-1 == (x)) myErr;}
+#define SPLIT 		("|")
+#define FILE_PATH	("files/")
 
 int epfd;			// epoll fd
 list<int> cs;		// 保存client_fd
@@ -102,7 +102,7 @@ int make_client_socket(const char *ip, int port)
 	return client_socket;
 }
 
-void set_noblocking(int fd)
+void set_unblocking(int fd)
 {
 	fcntl(fd, F_SETFL, fcntl(fd, F_GETFD, 0) | O_NONBLOCK);
 }
@@ -121,7 +121,7 @@ void epfd_add(int epollfd, int fd, bool et)
 		event.events |= EPOLLET;	// edge triggered	
 	epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &event);
 
-	set_noblocking(fd);
+	set_unblocking(fd);
 }
 
 void epfd_del(int epollfd, int fd)

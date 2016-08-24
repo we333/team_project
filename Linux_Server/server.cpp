@@ -253,6 +253,7 @@ void Sendfile(int sockfd, vector<string> vs)
 			myErr;
 	}
 
+	set_unblocking(sockfd);
 	fclose(f);
 }
 
