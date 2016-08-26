@@ -113,6 +113,9 @@ public:
 		pstmt->setString(2, usr.pwd);
 		res = pstmt->executeQuery();
 
+		cout<<usr.name<<endl;
+		cout<<usr.pwd<<endl;
+
 		if(!res->next())	// user is not exist
 			return false;
 

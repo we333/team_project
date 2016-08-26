@@ -42,6 +42,8 @@ void message_route(int sockfd, vector<string> vs);
 	void Chat(int sockfd, vector<string> vs);
 	void Search(int sockfd, vector<string> vs);
 	void Upload(int sockfd, vector<string> vs);
+	void recv_file_from_client(int sockfd, vector<string> vs);
+	void send_file_to_client(int sockfd, vector<string> vs);
 
 typedef struct
 {
@@ -51,11 +53,13 @@ typedef struct
 
 Service service[] = 
 {
-	{"login", 		Login},
-	{"register", 	Register},
-	{"chat",		Chat},
-	{"search",		Search},
-	{"upload", 		Upload},
+	{"login", 		Login 						},
+	{"register", 	Register 					},
+	{"chat",		Chat 						},
+	{"search",		Search 						},
+	{"upload", 		Upload 						},
+	{"pushfile",	recv_file_from_client		},
+	{"pullfile",	send_file_to_client			},
 };
 
 int main(int ac, char *av[])
@@ -223,4 +227,53 @@ void Upload(int sockfd, vector<string> vs)
 		Try(send(sockfd, "success\n", BUFSIZ, 0))
 	else
 		Try(send(sockfd, "fail\n", BUFSIZ, 0))
+}
+
+/**********************************
+	vs[1]:file name
+	vs[2]:file type
+**********************************/
+void recv_file_from_client(int sockfd, vector<string> vs)
+{
+	set_blocking(sockfd);
+	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
+	FILE *f;
+	string filename = FILE_PATH + vs[1] + "." + vs[2];
+
+	if(NULL == (f = fopen(filename.c_str(), "wb+")))
+		myErr;
+
+	int len = 0;
+	while(len = recv(sockfd, buf, BUFSIZ, 0))
+	{
+		if(len < 0)	myErr;
+		if(len > fwrite(buf, sizeof(char), len, f))
+			myErr;
+	}
+
+	set_unblocking(sockfd);
+	fclose(f);
+}
+
+/**********************************
+	vs[1]:file name
+	vs[2]:file type
+**********************************/
+void send_file_to_client(int sockfd, vector<string> vs)
+{
+	set_blocking(sockfd);
+	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
+
+	FILE *f;
+	string filename = FILE_PATH + vs[1] + "." + vs[2];
+
+	if(NULL == (f = fopen(filename.c_str(), "rb+")))
+		myErr;
+
+	int len = 0;
+	while(len = fread(buf, sizeof(char), BUFSIZ, f))
+		Try(send(sockfd, buf, len, 0))
+
+	fclose(f);
+	close(sockfd);
 }
