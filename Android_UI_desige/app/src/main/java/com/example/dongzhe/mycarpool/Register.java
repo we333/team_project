@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Register extends AppCompatActivity {
-
+	
     Client register = new Client();
     EditText nm,pwd,eml;
     Button btn1;
@@ -46,6 +46,7 @@ public class Register extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... params) {
             try {
+	//connect to server
                 rg = register.start("register|"+get_nm+"|"+get_pwd+"|"+get_eml);
                 if(rg.equals("success")){
                     rt = 1;
