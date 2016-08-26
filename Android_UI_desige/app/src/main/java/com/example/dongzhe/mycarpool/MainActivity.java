@@ -7,52 +7,53 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    ImageButton btn1,btn2;
+    Button btn3,btn4;
+        Client ct = new Client();
+        EditText et_name,et_pwd;
 
-    Button btn1,btn2,btn3,btn4;
-    Client ct = new Client();
-    EditText et_name,et_pwd;
-
-    String get_n,get_p;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        String get_n,get_p;
 
 
-        btn1 = (Button) findViewById(R.id.button_diver);
-        btn2 = (Button) findViewById(R.id.button_noru);
-        btn3=(Button) findViewById(R.id.button_needhelp);
-        btn4=(Button) findViewById(R.id.button_register);
-
-        et_name =(EditText) findViewById(R.id.editText_name);
-        et_pwd =(EditText) findViewById(R.id.editText_pass);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+            btn1 = (ImageButton) findViewById(R.id.button_diver);
+            btn2 = (ImageButton) findViewById(R.id.button_noru);
+            btn3=(Button) findViewById(R.id.button_needhelp);
+            btn4=(Button) findViewById(R.id.button_register);
+
+            et_name =(EditText) findViewById(R.id.editText_name);
+            et_pwd =(EditText) findViewById(R.id.editText_pass);
 
 
-            public void onClick(View v) {
-                get_n = et_name.getText().toString();
-                get_p = et_pwd.getText().toString();
-                new login_try_driver().execute();
-            }
-
-        });
+            btn1.setOnClickListener(new View.OnClickListener() {
 
 
+                public void onClick(View v) {
+                    get_n = et_name.getText().toString();
+                    get_p = et_pwd.getText().toString();
+                    new login_try_driver().execute();
+                }
 
-        btn2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                get_n = et_name.getText().toString();
-                get_p = et_pwd.getText().toString();
-                new login_try_pass().execute();
-            }
-        });
+            });
+
+
+
+            btn2.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v) {
+                    get_n = et_name.getText().toString();
+                    get_p = et_pwd.getText().toString();
+                    new login_try_pass().execute();
+                }
+            });
 
         btn4.setOnClickListener(new View.OnClickListener(){
             @Override

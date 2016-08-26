@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.dongzhe.mycarpool.Client"
-    tools:showIn="@layout/activity_client">
+    tools:showIn="@layout/activity_client"
+    android:background="#91e4df">
 
 </RelativeLayout>

@@ -10,10 +10,11 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 public class splashScreen extends AppCompatActivity {
 
-    private ImageView welcomeImg = null;
+    private RelativeLayout relativeLayout=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +22,10 @@ public class splashScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
 
-        welcomeImg = (ImageView) this.findViewById(R.id.welcome_img);
+        relativeLayout = (RelativeLayout) this.findViewById(R.id.welcome_img);
         AlphaAnimation anima = new AlphaAnimation(0.3f, 1.0f);
-        anima.setDuration(2000);// 设置动画显示时间
-        welcomeImg.startAnimation(anima);
+        anima.setDuration(4000);// 设置动画显示时间
+        relativeLayout.startAnimation(anima);
         anima.setAnimationListener(new AnimationImpl());
     }
 
@@ -32,7 +33,7 @@ public class splashScreen extends AppCompatActivity {
 
         @Override
         public void onAnimationStart(Animation animation) {
-            welcomeImg.setBackgroundResource(R.drawable.welcome);
+            relativeLayout.setBackgroundResource(R.drawable.beijinchuan);
         }
 
         @Override
@@ -50,5 +51,6 @@ public class splashScreen extends AppCompatActivity {
     private void skip() {
         startActivity(new Intent(this, MainActivity.class));
         finish();
+
     }
 }
