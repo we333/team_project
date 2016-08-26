@@ -274,6 +274,7 @@ void send_file_to_client(int sockfd, vector<string> vs)
 	while(len = fread(buf, sizeof(char), BUFSIZ, f))
 		Try(send(sockfd, buf, len, 0))
 
+	set_unblocking(sockfd);
 	fclose(f);
 	close(sockfd);
 }
