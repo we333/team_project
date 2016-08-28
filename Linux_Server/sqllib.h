@@ -12,6 +12,7 @@
 #include <iostream>
 #include <sstream>
 #include <mysql/mysql.h>
+
 #include <mysql_connection.h>  
 #include <mysql_driver.h>  
 #include <cppconn/driver.h>  
@@ -49,6 +50,14 @@ typedef struct
 	string start;
 	string end;
 }search_info;
+
+typedef struct
+{
+	string name;
+	string date;
+	string start;
+	string end;
+}booking_info;
 
 typedef struct
 {
@@ -113,9 +122,6 @@ public:
 		pstmt->setString(2, usr.pwd);
 		res = pstmt->executeQuery();
 
-		cout<<usr.name<<endl;
-		cout<<usr.pwd<<endl;
-
 		if(!res->next())	// user is not exist
 			return false;
 
@@ -166,6 +172,37 @@ public:
 			}
 		}
 		return list;
+	};
+	bool Booking(booking_info info)
+	{
+		string seat;
+		pstmt = conn->prepareStatement("SELECT seat FROM userinfo where name=(?) and date=(?) and start=(?) and end=(?)");
+		pstmt->setString(1, info.name);
+		pstmt->setString(2, info.date);
+		pstmt->setString(3, info.start);
+		pstmt->setString(4, info.end);
+		res = pstmt->executeQuery();
+
+		while(res->next())	// booking info is not exist
+			if(NULL != res)
+				seat = res->getString("seat");
+
+		int i_seat = atoi(seat.c_str());
+		if(0 == i_seat)	return false;
+		i_seat--;
+
+		stringstream tmp; 
+		tmp<<i_seat; 
+		tmp>>seat;
+		pstmt = conn->prepareStatement("UPDATE userinfo set seat=(?) where name=(?) and date=(?) and start=(?) and end=(?)");
+		pstmt->setString(1, seat);
+		pstmt->setString(2, info.name);
+		pstmt->setString(3, info.date);
+		pstmt->setString(4, info.start);
+		pstmt->setString(5, info.end);
+		res = pstmt->executeQuery();
+
+		return true;
 	};
 	bool Upload(carpool_info info)	// 车主->提交自己拼车信息
 	{
