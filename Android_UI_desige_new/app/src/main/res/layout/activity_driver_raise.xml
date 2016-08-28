@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/beijinchuan"
+    android:id="@+id/ll_today"
+    tools:context="com.example.dongzhe.mycarpool.DriverRaiseActivity">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText15"
+            android:layout_alignBottom="@+id/textView17"
+            android:layout_toEndOf="@+id/textView17" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="時間"
+            android:id="@+id/textView14"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="133dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="場所"
+            android:id="@+id/textView15"
+            android:layout_marginTop="73dp"
+            android:layout_below="@+id/textView14"
+            android:layout_alignStart="@+id/textView14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="値段"
+            android:id="@+id/textView16"
+            android:layout_marginTop="71dp"
+            android:layout_below="@+id/textView15"
+            android:layout_alignStart="@+id/textView15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="備考"
+            android:id="@+id/textView17"
+            android:layout_below="@+id/textView16"
+            android:layout_alignStart="@+id/textView16"
+            android:layout_marginTop="56dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="から"
+            android:id="@+id/textView18"
+            android:layout_above="@+id/textView15"
+            android:layout_toEndOf="@+id/editText11" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="まで"
+            android:id="@+id/textView19"
+            android:layout_alignBottom="@+id/editText12"
+            android:layout_toEndOf="@+id/editText12" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="作成"
+            android:id="@+id/button3"
+            android:layout_below="@+id/textView17"
+            android:layout_alignStart="@+id/textView17"
+            android:layout_marginTop="97dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText11"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText12"
+        android:layout_above="@+id/textView15"
+        android:layout_toEndOf="@+id/textView18" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText13"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_toStartOf="@+id/textView18" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText14"
+        android:layout_above="@+id/textView17"
+        android:layout_toEndOf="@+id/textView16" />
+</RelativeLayout>
