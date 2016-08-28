@@ -3,19 +3,25 @@ package com.example.dongzhe.mycarpool;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class PassengerBrowse extends Fragment {
 
+    private Handler sendHandler;
+
     Button btn_s,btn1;
+    ImageButton btn_m;
     EditText et_time,et_from,et_to;
 
     String time=null;
@@ -23,10 +29,14 @@ public class PassengerBrowse extends Fragment {
     String to=null;
     String mm;
 
+    String content;
+
     String [] strarray;
     Client csearch = new Client();
 
     TextView textView1,textView2,textView3,textView4,textView5,textView6,mail;
+
+    EditText ss;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,8 +48,11 @@ public class PassengerBrowse extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_passenger_browse, container, false);
 
+        sendHandler =  new Handler();
+
         btn_s=(Button) view.findViewById(R.id.button_p_search);
         btn1=(Button) view.findViewById(R.id.button_pass_car);
+        btn_m=(ImageButton) view.findViewById(R.id.Button_sendmail);
 
         et_time=(EditText)view.findViewById(R.id.editText_search_date) ;
         et_from=(EditText)view.findViewById(R.id.editText_search_from) ;
@@ -80,8 +93,21 @@ public class PassengerBrowse extends Fragment {
         LayoutInflater inflater=(LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View layout=inflater.inflate(R.layout.passenger_browse_dialog,(ViewGroup)getActivity().findViewById(R.id.LinearLayout1));
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+
+        mail = (TextView)layout.findViewById(R.id.TextView_dia_mail);
+        ss = (EditText) layout.findViewById(R.id.editText_sendmail_in);
+
         TextView t = (TextView)layout.findViewById(R.id.TextView_dia_mail);
         t.setText(mm);
+
+        btn_m.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                content =ss.getText().toString();
+                SendTask sTask = new SendTask();
+                sTask.execute();
+            }
+        });
+
         builder.setTitle("車主情報");
         builder.setView(layout);
         AlertDialog dialog=builder.create();
@@ -143,5 +169,63 @@ public class PassengerBrowse extends Fragment {
                 Toast.makeText(getActivity(),"Please write informations", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    class SendTask extends AsyncTask<Integer, Integer, String> {
+        //后面尖括号内分别是参数（例子里是线程休息时间），进度(publishProgress用到)，返回值 类型
+
+        @Override
+        protected void onPreExecute() {
+            //第一个执行方法
+            Toast.makeText(getActivity(), "Begin Send!", Toast.LENGTH_SHORT).show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Integer... params) {
+            //第二个执行方法,onPreExecute()执行完后执行
+            // TODO Auto-generated method stub
+            Mail m = new Mail("dongzhe2015", "ribenliuxue");
+
+            String[] toArr = {mm};
+            m.setTo(toArr);
+            m.setFrom("dongzhe2015@yahoo.co.jp");
+            m.setSubject("募集した情報");
+            m.setBody(content);
+
+
+            try {
+                //If you want add attachment use function addAttachment.
+                //m.addAttachment("/sdcard/filelocation");
+
+                if(m.send()) {
+                    System.out.println("Email was sent successfully.");
+                } else {
+                    System.out.println("Email was not sent.");
+                }
+            } catch(Exception e) {
+                //Toast.makeText(MailApp.this, "There was a problem sending the email.", Toast.LENGTH_LONG).show();
+                Log.e("MailApp", "Could not send email", e);
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            //这个函数在doInBackground调用publishProgress时触发，虽然调用时只有一个参数
+            //但是这里取到的是一个数组,所以要用progesss[0]来取值
+            //第n个参数就用progress[n]来取值
+            super.onProgressUpdate(progress);
+        }
+
+        @Override
+        protected void onPostExecute(String r) {
+            //doInBackground返回时触发，换句话说，就是doInBackground执行完后触发
+            //这里的result就是上面doInBackground执行后的返回值，所以这里是"执行完毕"
+            //setTitle(result);
+            super.onPostExecute(r);
+        }
+
     }
 }

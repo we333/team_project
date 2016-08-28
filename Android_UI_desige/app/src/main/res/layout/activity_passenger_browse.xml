@@ -13,7 +13,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="検索"
         android:id="@+id/button_p_search"
         android:layout_below="@+id/textView23"
 
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="date: "
+        android:text="日付："
         android:id="@+id/textView22"
         android:layout_marginTop="68dp"
         android:layout_alignParentTop="true"
@@ -44,9 +44,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="車主名"
         android:id="@+id/textView20"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="34dp"
         android:layout_below="@+id/line"
-        android:layout_alignEnd="@+id/button_pass_car" />
+        android:layout_toEndOf="@+id/textView_pass_output" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
@@ -69,13 +69,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="from:"
+        android:text="出発地："
         android:id="@+id/textView21"
         android:layout_alignBottom="@+id/editText_search_date"
         android:layout_toEndOf="@+id/editText_search_date" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
@@ -87,13 +87,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="to:"
+        android:text="到着地："
         android:id="@+id/textView23"
         android:layout_alignBottom="@+id/editText_search_from"
         android:layout_toEndOf="@+id/editText_search_from" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
@@ -105,63 +105,62 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="date"
+        android:text="日付"
         android:id="@+id/textView25"
+        android:layout_marginStart="34dp"
         android:layout_alignTop="@+id/textView26"
-        android:layout_toStartOf="@+id/textView26"
-        android:layout_marginEnd="53dp" />
+        android:layout_toEndOf="@+id/button_pass_car" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="from"
+        android:text="出発地"
         android:id="@+id/textView26"
-        android:layout_above="@+id/textView_pass_output"
-        android:layout_toStartOf="@+id/textView21" />
+        android:layout_alignTop="@+id/textView20"
+        android:layout_toEndOf="@+id/editText_search_date" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="to"
+        android:text="到着地"
         android:id="@+id/textView27"
         android:layout_alignTop="@+id/textView26"
-        android:layout_alignStart="@+id/editText_search_from" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="price"
+        android:text="値段"
         android:id="@+id/textView28"
         android:layout_alignTop="@+id/textView27"
-        android:layout_toStartOf="@+id/textView29"
-        android:layout_marginEnd="59dp" />
+        android:layout_alignEnd="@+id/editText_search_from" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="seat"
+        android:text="座席"
         android:id="@+id/textView29"
         android:layout_alignTop="@+id/textView28"
-        android:layout_alignEnd="@+id/textView23" />
+        android:layout_toStartOf="@+id/editText_search_to" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="comment"
+        android:text="コメント"
         android:id="@+id/textView30"
-        android:layout_marginEnd="36dp"
         android:layout_alignTop="@+id/textView29"
-        android:layout_alignEnd="@+id/button_p_search" />
+        android:layout_alignEnd="@+id/line" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
+        android:textSize="20dp"
         android:id="@+id/button_pass_car"
         android:background="@android:color/transparent"
         android:layout_below="@+id/textView_pass_output"
@@ -182,8 +181,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="-"
         android:id="@+id/textView_p_from"
-        android:layout_below="@+id/textView_pass_output"
-        android:layout_toEndOf="@+id/textView25" />
+        android:layout_alignTop="@+id/textView_p_to"
+        android:layout_alignStart="@+id/textView26" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -191,8 +190,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="-"
         android:id="@+id/textView_p_to"
-        android:layout_below="@+id/textView_pass_output"
-        android:layout_toEndOf="@+id/textView21" />
+        android:layout_alignTop="@+id/textView_s_date"
+        android:layout_alignStart="@+id/textView27" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -210,7 +209,7 @@
         android:text="-"
         android:id="@+id/textView_p_seat"
         android:layout_alignTop="@+id/textView_p_price"
-        android:layout_toEndOf="@+id/textView28" />
+        android:layout_alignStart="@+id/textView29" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -220,6 +219,5 @@
         android:id="@+id/textView_p_comment"
         android:layout_alignTop="@+id/textView_p_seat"
         android:layout_alignStart="@+id/textView30" />
-
 
 </RelativeLayout>
