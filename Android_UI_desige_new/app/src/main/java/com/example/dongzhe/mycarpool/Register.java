@@ -87,6 +87,9 @@ public class Register extends AppCompatActivity {
                 get_nm = nm.getText().toString();
                 get_pwd = pwd.getText().toString();
                 get_eml = eml.getText().toString();
+                System.out.println(get_nm);
+                System.out.println(get_pwd);
+                System.out.println(get_eml);
                 if(get_nm.length()>6||get_nm.length()<4){
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
                     builder.setTitle("ユーザー名のフォーマットエラー");
