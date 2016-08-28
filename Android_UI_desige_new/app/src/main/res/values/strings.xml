@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">My Carpool</string>
-    <string name="bottom_tab_know">募集</string>
-    <string name="bottom_tab_wantknow">ブラウザ</string>
-    <string name="bottom_tab_my">マイン</string>
-    <string name="title_activity_client">Client</string>
-</resources>
