@@ -15,20 +15,7 @@
 */
 
 /*
-完成功能:
-	1.login
-	2.chat|name|msg 聊天指定发送对象	(用户登录时,fd写入mysql)
-	3.chat|all|msg  聊天内容发往所有在线用户
-	4.用户退出时,fd清空为-1
-
-待导入功能:
-	1.登录后,数据库更新登录状态
-	2.客户通过命令获取当前在线用户名单
-	3.是否使用多线程
-	4.用于聊天的fd保存在内存中,而不是每次chat都去读数据库
-
-Bug:
-	register的id自增问题
+	
 */
 
 #include "utility.h"
@@ -42,24 +29,28 @@ void message_route(int sockfd, vector<string> vs);
 	void Chat(int sockfd, vector<string> vs);
 	void Search(int sockfd, vector<string> vs);
 	void Upload(int sockfd, vector<string> vs);
-	void recv_file_from_client(int sockfd, vector<string> vs);
-	void send_file_to_client(int sockfd, vector<string> vs);
+	void Booking(int sockfd, vector<string> vs);
+	void Send_file_to_client(int sockfd, vector<string> vs);
+	void Recv_file_from_client(int sockfd, vector<string> vs);
+void client_reply(int sockfd, string reply);
 
 typedef struct
 {
 	string cmd;
+	int size;	// Protocol: define the number of parameter in each command
 	void (*func)(int, vector<string>);
 }Service;
 
-Service service[] = 
+Service sv[] = 
 {
-	{"login", 		Login 						},
-	{"register", 	Register 					},
-	{"chat",		Chat 						},
-	{"search",		Search 						},
-	{"upload", 		Upload 						},
-	{"pushfile",	recv_file_from_client		},
-	{"pullfile",	send_file_to_client			},
+	{"login", 		3,	Login 					},
+	{"register", 	4,	Register 				},
+	{"chat",		3,	Chat 					},
+	{"search",		4,	Search 					},
+	{"upload", 		8,	Upload 					},
+	{"booking",		5,	Booking 				},
+	{"pullfile",	3,	Send_file_to_client		},
+	{"pushfile",	3,	Recv_file_from_client	},
 };
 
 int main(int ac, char *av[])
@@ -67,13 +58,15 @@ int main(int ac, char *av[])
 	signal(SIGCHLD, child_waiter);
 	cs.clear();		// 清理客户信息
 
-	int listener = make_server_socket(IP, PORT);
+	int listener = make_server_socket(av[1], PORT);
 	int event_cnt;
 
 	Try(epfd = epoll_create(EPOLL_SIZE))
 
 	epoll_event events[EPOLL_SIZE];
 	epfd_add(epfd, listener, true);		// epoll中注册服务器fd
+
+//	daemon(0,0);
 
 	while(1)
 	{
@@ -115,14 +108,11 @@ void client_connect(int sockfd)
 
 void client_message(int sockfd)
 {
-	char msg[BUFSIZ], buf[BUFSIZ];
-	bzero(msg, BUFSIZ); bzero(buf, BUFSIZ);
-	int len = recv(sockfd, buf, BUFSIZ, 0);
-	if(0 > len)
-	{
-		myErr;
-	}
-	else if(0 == len)
+	int len;
+	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
+	
+	Try(len = recv(sockfd, buf, BUFSIZ, 0))
+	if(0 == len)
 	{
 		cout<<"******client exit******"<<endl;
 		cs.remove(sockfd);
@@ -132,22 +122,26 @@ void client_message(int sockfd)
 		wesql.ClearAddr(sockfd);
 	}
 	else
-	{
-		cout<<buf<<endl;
 		message_route(sockfd, split(buf));
-	}
+
 }
 
 void message_route(int sockfd, vector<string> vs)
 {
-	if(0 == vs.size())
-		myErr;
+	for(int i = 0; i < vs.size(); i++)
+		cout<<"param["<<i<<"] = "<<vs[i]<<endl;
+	cout<<"---------------------"<<endl;
 
-	for(int i = 0; i < sizeof(service)/sizeof(service[0]); i++)
-		if(service[i].cmd == vs[0])
-			{service[i].func(sockfd, vs); return;}	// command route
-	
-	Try(send(sockfd, "undefined\n", BUFSIZ, 0))
+	for(int i = 0; i < sizeof(sv)/sizeof(sv[0]); i++)
+	{	
+		if(sv[i].cmd == vs[0])
+		{
+			if(vs.size() != sv[i].size)			// number of parameter is incorrect
+				{client_reply(sockfd, "invalid\n");	return;}
+			{sv[i].func(sockfd, vs); return;}	// valid command, action it
+		}
+	}
+	client_reply(sockfd, "undefined\n");		// undefined command
 }
 
 void Login(int sockfd, vector<string> vs)
@@ -156,9 +150,9 @@ void Login(int sockfd, vector<string> vs)
 	usr.name = vs[1];
 	usr.pwd = vs[2];
 	if(wesql.Login(usr, sockfd))		// 传入clientfd更新数据库信息,用于聊天
-		Try(send(sockfd, "success\n", BUFSIZ, 0))
+		client_reply(sockfd, "success\n");
 	else
-		Try(send(sockfd, "fail\n", BUFSIZ, 0))
+		client_reply(sockfd, "fail\n");
 }
 
 void Register(int sockfd, vector<string> vs)
@@ -168,9 +162,9 @@ void Register(int sockfd, vector<string> vs)
 	usr.pwd = vs[2];
 	usr.email = vs[3];
 	if(wesql.Register(usr))
-		Try(send(sockfd, "success\n", BUFSIZ, 0))
+		client_reply(sockfd, "success\n");
 	else
-		Try(send(sockfd, "fail\n", BUFSIZ, 0))
+		client_reply(sockfd, "fail\n");
 }
 
 void Chat(int sockfd, vector<string> vs)
@@ -183,12 +177,12 @@ void Chat(int sockfd, vector<string> vs)
 		list<int>::iterator it;
     	for(it = cs.begin(); it != cs.end(); it++)
 			if(sockfd != *it)
-				Try(send(*it, msg.c_str(), BUFSIZ, 0))// 广播不要发给自己
+				client_reply(*it, msg.c_str());	// 广播不要发给自己
 	}
 	else
 	{
 		int to = atoi(wesql.FindAddrFromName(vs[1]).c_str());
-		Try(send(to, msg.c_str(), BUFSIZ, 0))
+		client_reply(to, msg.c_str());
 	}
 }
 
@@ -203,14 +197,14 @@ void Search(int sockfd, vector<string> vs)
 	db_res = wesql.Search(info);
 
 	if(0 == db_res.size())
-		Try(send(sockfd, "noresults\n", BUFSIZ, 0));
+		client_reply(sockfd, "noresults\n");
 
 	string msg;
 	vector<string>::iterator it;
 	for(it = db_res.begin(); it != db_res.end(); it++)	// bug 由于client的epoll监听是同一事件,连续send两次消息,client也只能处理一次消息
 		msg += *it + '|';
-	msg += '\n';
-	Try(send(sockfd, msg.c_str(), BUFSIZ, 0));
+
+	client_reply(sockfd, msg.c_str());
 }
 
 void Upload(int sockfd, vector<string> vs)
@@ -224,21 +218,44 @@ void Upload(int sockfd, vector<string> vs)
 	info.seat = vs[6];
 	info.comment = vs[7];
 	if(wesql.Upload(info))
-		Try(send(sockfd, "success\n", BUFSIZ, 0))
+		client_reply(sockfd, "success\n");
 	else
-		Try(send(sockfd, "fail\n", BUFSIZ, 0))
+		client_reply(sockfd, "fail\n");
 }
 
-/**********************************
-	vs[1]:file name
-	vs[2]:file type
-**********************************/
-void recv_file_from_client(int sockfd, vector<string> vs)
+void Booking(int sockfd, vector<string> vs)
+{
+	booking_info info;
+	info.name = vs[1];
+	info.date = vs[2];
+	info.start = vs[3];
+	info.end = vs[4];
+
+	if(wesql.Booking(info))
+		client_reply(sockfd, "success\n");
+	else
+		client_reply(sockfd, "fail\n");
+}
+
+void Send_file_to_client(int sockfd, vector<string> vs)
+{
+	string filename = FILE_PATH + vs[1] + "." + vs[2];
+	int fd = open(filename.c_str(), O_RDONLY);
+
+	struct stat stat_buf;
+	fstat(fd, &stat_buf);
+
+	usleep(1);
+	Try(sendfile(sockfd, fd, NULL, stat_buf.st_size))
+}
+
+void Recv_file_from_client(int sockfd, vector<string> vs)
 {
 	set_blocking(sockfd);
-	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
+
 	FILE *f;
 	string filename = FILE_PATH + vs[1] + "." + vs[2];
+	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
 
 	if(NULL == (f = fopen(filename.c_str(), "wb+")))
 		myErr;
@@ -246,35 +263,19 @@ void recv_file_from_client(int sockfd, vector<string> vs)
 	int len = 0;
 	while(len = recv(sockfd, buf, BUFSIZ, 0))
 	{
+		cout<<"recv "<<len<<" bytes"<<endl;
 		if(len < 0)	myErr;
 		if(len > fwrite(buf, sizeof(char), len, f))
 			myErr;
 	}
+	cout<<"recv file finished"<<endl;
+	cout<<"---------------------"<<endl;
+	fclose(f);
 
 	set_unblocking(sockfd);
-	fclose(f);
 }
 
-/**********************************
-	vs[1]:file name
-	vs[2]:file type
-**********************************/
-void send_file_to_client(int sockfd, vector<string> vs)
+void client_reply(int sockfd, string reply)
 {
-	set_blocking(sockfd);
-	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
-
-	FILE *f;
-	string filename = FILE_PATH + vs[1] + "." + vs[2];
-
-	if(NULL == (f = fopen(filename.c_str(), "rb+")))
-		myErr;
-
-	int len = 0;
-	while(len = fread(buf, sizeof(char), BUFSIZ, f))
-		Try(send(sockfd, buf, len, 0))
-
-	set_unblocking(sockfd);
-	fclose(f);
-	close(sockfd);
+	Try(send(sockfd, reply.c_str(), BUFSIZ, 0))
 }

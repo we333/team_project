@@ -6,9 +6,11 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/epoll.h>
+#include <sys/sendfile.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
@@ -19,14 +21,16 @@
 
 using namespace std;
 
-#define IP ("192.168.1.102")
-//#define IP ("127.0.0.1")
-#define PORT 		(11112)
+#define IP 			("192.168.11.22")
+//#define IP 			("localhost")
+//#define IP 			("210.129.54.191")
+//#define IP 				("127.0.0.1")
+#define PORT 		(11111)
 #define EPOLL_SIZE 	(4096)
-#define	myErr		{cout<<__FUNCTION__<<": "<<__LINE__<<"line"<<endl; perror(" ");/* exit(-1) */;}
+#define	myErr		{cout<<__FUNCTION__<<": "<<__LINE__<<" line"<<endl; perror(" "); exit(-1);}
 #define Try(x)		{if(-1 == (x)) myErr;}
 #define SPLIT 		("|")
-#define FILE_PATH	("files/")
+#define FILE_PATH 	("static/")
 
 int epfd;			// epoll fd
 list<int> cs;		// 保存client_fd
@@ -87,6 +91,8 @@ int make_client_socket(const char *ip, int port)
 {
 	int client_socket;
 
+	cout<<"ip = "<<ip<<endl;
+
 	if(-1 == (client_socket = socket(AF_INET, SOCK_STREAM, 0)))
 		myErr("client socket failed");
 
@@ -109,7 +115,7 @@ void set_unblocking(int fd)
 
 void set_blocking(int fd)
 {
-	fcntl(fd, F_SETFL, fcntl(fd, F_GETFD, 0));
+	fcntl(fd, F_SETFL, fcntl(fd, F_GETFL, 0) & ~O_NONBLOCK);
 }
 
 void epfd_add(int epollfd, int fd, bool et)

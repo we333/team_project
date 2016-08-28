@@ -5,23 +5,17 @@
 int main(int ac, char *av[])
 {
 	int sockfd = make_client_socket(IP, PORT);
-	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
-	char buf2[BUFSIZ]; bzero(buf2, BUFSIZ);
+	int fd = open("target.png", O_RDONLY);
+	
+	struct stat stat_buf;
+	fstat(fd, &stat_buf);
 
-	FILE *f, *f2;
-	if(NULL == (f = fopen("target.png", "rb")))
-		myErr;
+	send(sockfd, SEND_FILE, sizeof(SEND_FILE), 0);
+	
+	usleep(1);	// if donot sleep, server cannot recv all data
+	Try(sendfile(sockfd, fd, NULL, stat_buf.st_size))
 
-	Try(send(sockfd, SEND_FILE, sizeof(SEND_FILE), 0))
-
-	int len = 0;
-	while(len = fread(buf, sizeof(char), BUFSIZ, f))
-	{
-		cout<<"send "<<len<<" bytes"<<endl;
-		Try(send(sockfd, buf, len, 0))
-	}
-
-	fclose(f);
+	close(fd);
 	close(sockfd);
 
 	return 0;
