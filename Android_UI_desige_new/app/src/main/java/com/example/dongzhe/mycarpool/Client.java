@@ -14,7 +14,7 @@ public class Client {
 
         Writer writer;
         Socket client = new Socket();
-        InetSocketAddress addr = new InetSocketAddress("192.168.11.3", 11112);
+        InetSocketAddress addr = new InetSocketAddress("210.129.54.191", 11111);
         client.connect(addr);
 
         writer = new OutputStreamWriter(client.getOutputStream());
