@@ -81,8 +81,6 @@ public class PassengerBrowse extends Fragment {
                 from = et_from.getText().toString();
                 to = et_to.getText().toString();
 
-                System.out.println(time+" "+from+" "+to);
-
                 new Spilt().execute();
 
             }
@@ -124,7 +122,7 @@ public class PassengerBrowse extends Fragment {
         @Override
         protected Integer doInBackground(String... params) {
             try {
-                if (time.length()==0 || from.length()==0 || to.length()==0) {
+                if (time==null || from==null || to==null) {
                     sh = 0;
                 } else {
                     sr = csearch.start("search|" + time + "|" + from + "|" + to);
