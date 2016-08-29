@@ -16,20 +16,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="乗る人："
-        android:id="@+id/textView20"
-        android:layout_marginTop="41dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="出発地："
         android:id="@+id/textView21"
-        android:layout_marginTop="80dp"
-        android:layout_below="@+id/textView25" />
+        android:layout_marginTop="84dp"
+        android:layout_below="@+id/textView25"
+        android:layout_alignStart="@+id/textView23" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,9 +28,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="到着地："
         android:id="@+id/textView23"
+        android:layout_marginTop="82dp"
         android:layout_below="@+id/textView21"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="78dp" />
+        android:layout_alignStart="@+id/textView30" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,9 +38,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="日付："
         android:id="@+id/textView25"
-        android:layout_below="@+id/textView20"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="74dp" />
+        android:layout_marginTop="79dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView21" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,26 +48,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="コメント："
         android:id="@+id/textView30"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="38dp"
         android:layout_below="@+id/textView23"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="送信"
-        android:id="@+id/button2"
-        android:layout_marginTop="57dp"
-        android:layout_below="@+id/textView30"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/Text_passenger_name"
-        android:layout_above="@+id/textView25"
-        android:layout_alignStart="@+id/Text_depature" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="135dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,7 +59,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/Text_date"
         android:layout_alignTop="@+id/textView25"
-        android:layout_alignStart="@+id/Text_passenger_name" />
+        android:layout_alignStart="@+id/Text_depature" />
 
     <TextView
         android:layout_width="wrap_content"

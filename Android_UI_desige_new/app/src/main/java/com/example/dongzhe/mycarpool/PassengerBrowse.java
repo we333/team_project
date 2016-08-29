@@ -97,7 +97,7 @@ public class PassengerBrowse extends Fragment {
         {
             try {
                 System.out.println("booking start");
-                String res = booking.start("booking|" + strarray[1] + "|" + strarray[2] + "|" + strarray[3] + "|" + strarray[4]);
+                String res = booking.start("booking|" + strarray[0] + "|" + strarray[2] + "|" + strarray[3] + "|" + strarray[4]);
             } catch (Exception e) {
                 e.printStackTrace();
             }
