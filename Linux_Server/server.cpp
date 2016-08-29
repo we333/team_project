@@ -30,6 +30,7 @@ void message_route(int sockfd, vector<string> vs);
 	void Search(int sockfd, vector<string> vs);
 	void Upload(int sockfd, vector<string> vs);
 	void Booking(int sockfd, vector<string> vs);
+	void Check_booking(int sockfd, vector<string> vs);
 	void Send_file_to_client(int sockfd, vector<string> vs);
 	void Recv_file_from_client(int sockfd, vector<string> vs);
 void client_reply(int sockfd, string reply);
@@ -49,6 +50,7 @@ Service sv[] =
 	{"search",		4,	Search 					},
 	{"upload", 		8,	Upload 					},
 	{"booking",		5,	Booking 				},
+	{"checkbooking",2,	Check_booking			},
 	{"pullfile",	3,	Send_file_to_client		},
 	{"pushfile",	3,	Recv_file_from_client	},
 };
@@ -188,16 +190,14 @@ void Chat(int sockfd, vector<string> vs)
 
 void Search(int sockfd, vector<string> vs)
 {
-	vector<string> db_res;
 	search_info info;
 	info.date = vs[1];
 	info.start = vs[2];
 	info.end = vs[3];
-
-	db_res = wesql.Search(info);
+	vector<string> db_res = wesql.Search(info);
 
 	if(0 == db_res.size())
-		client_reply(sockfd, "noresults\n");
+		{client_reply(sockfd, "noresults\n"); return;}
 
 	string msg;
 	vector<string>::iterator it;
@@ -238,8 +238,23 @@ void Booking(int sockfd, vector<string> vs)
 		client_reply(sockfd, "fail\n");
 }
 
-void Send_file_to_client(int sockfd, vector<string> vs)
+void Check_booking(int sockfd, vector<string> vs)
 {
+	vector<string> db_res = wesql.Check_booking(vs[1]);
+	if(0 == db_res.size())
+		{client_reply(sockfd, "noresults\n"); return;}
+
+	string msg;
+	vector<string>::iterator it;
+	for(it = db_res.begin(); it != db_res.end(); it++)	// bug 由于client的epoll监听是同一事件,连续send两次消息,client也只能处理一次消息
+		msg += *it + '|';
+	msg += '\n';		// for Android recv, add '\n' at end of string !!!!
+
+	client_reply(sockfd, msg.c_str());
+}
+
+void Send_file_to_client(int sockfd, vector<string> vs)
+{/*
 	string filename = FILE_PATH + vs[1] + "." + vs[2];
 	int fd = open(filename.c_str(), O_RDONLY);
 
@@ -248,6 +263,28 @@ void Send_file_to_client(int sockfd, vector<string> vs)
 
 	usleep(1);
 	Try(sendfile(sockfd, fd, NULL, stat_buf.st_size))
+*/
+	set_blocking(sockfd);
+	char buf[BUFSIZ]; bzero(buf, BUFSIZ);
+
+	FILE *f;
+	string filename = FILE_PATH + vs[1] + "." + vs[2];
+
+	if(NULL == (f = fopen(filename.c_str(), "rb+")))
+		myErr;
+
+	int len = 0;
+	while(len = fread(buf, sizeof(char), BUFSIZ, f))
+	{
+		cout<<"send "<<len<<endl;
+		Try(send(sockfd, buf, len, 0))
+	}
+	cout<<"send over"<<endl;
+
+	set_unblocking(sockfd);
+	fclose(f);
+	close(sockfd);
+
 }
 
 void Recv_file_from_client(int sockfd, vector<string> vs)
