@@ -157,7 +157,6 @@ void Login(int sockfd, vector<string> vs)
 
 void Register(int sockfd, vector<string> vs)
 {
-	cout<<"Enter User "<<__FUNCTION__<<endl;
 	register_info usr;
 	usr.name = vs[1];
 	usr.pwd = vs[2];
@@ -204,6 +203,7 @@ void Search(int sockfd, vector<string> vs)
 	vector<string>::iterator it;
 	for(it = db_res.begin(); it != db_res.end(); it++)	// bug 由于client的epoll监听是同一事件,连续send两次消息,client也只能处理一次消息
 		msg += *it + '|';
+	msg += '\n';		// for Android recv, add '\n' at end of string !!!!
 
 	client_reply(sockfd, msg.c_str());
 }
