@@ -90,10 +90,10 @@ public class Register extends AppCompatActivity {
                 System.out.println(get_nm);
                 System.out.println(get_pwd);
                 System.out.println(get_eml);
-                if(get_nm.length()>6||get_nm.length()<4){
+                if(get_nm.length()>10||get_nm.length()<3){
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
                     builder.setTitle("ユーザー名のフォーマットエラー");
-                    builder.setMessage("Length should be 4-6");
+                    builder.setMessage("Length should be 3-10");
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +26,7 @@ public class PassengerBrowse extends Fragment {
     String time=null;
     String from=null;
     String to=null;
-    String mm;
+    String mm,res;
 
     String content;
 
@@ -96,8 +95,7 @@ public class PassengerBrowse extends Fragment {
         protected Integer doInBackground(String... params)
         {
             try {
-                System.out.println("booking start");
-                String res = booking.start("booking|" + strarray[0] + "|" + strarray[2] + "|" + strarray[3] + "|" + strarray[4]);
+                res = booking.start("booking|" + strarray[0] + "|" + strarray[2] + "|" + strarray[3] + "|" + strarray[4]);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -131,9 +129,18 @@ public class PassengerBrowse extends Fragment {
 
                 new Booking().execute();
 
-                content =ss.getText().toString();
-                SendTask sTask = new SendTask();
-                sTask.execute();
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(res.equals("fail")) {
+                    Toast.makeText(getActivity(), "No seat, YOU ARE LATE!!!", Toast.LENGTH_SHORT).show();
+                }else{
+                    content = ss.getText().toString();
+                    SendTask sTask = new SendTask();
+                    sTask.execute();
+                }
             }
         });
 
@@ -179,7 +186,6 @@ public class PassengerBrowse extends Fragment {
                     Toast.makeText(getActivity(),"no result", Toast.LENGTH_SHORT).show();
                 }else{
                     try{
-                        System.out.println(sr);
                         strarray=sr.split("\\|");
 
                         btn1.setText(strarray[0]);
@@ -227,11 +233,7 @@ public class PassengerBrowse extends Fragment {
                 //If you want add attachment use function addAttachment.
                 //m.addAttachment("/sdcard/filelocation");
 
-                if(m.send()) {
-                    System.out.println("Email was sent successfully.");
-                } else {
-                    System.out.println("Email was not sent.");
-                }
+                m.send();
             } catch(Exception e) {
                 //Toast.makeText(MailApp.this, "There was a problem sending the email.", Toast.LENGTH_LONG).show();
                 Log.e("MailApp", "Could not send email", e);

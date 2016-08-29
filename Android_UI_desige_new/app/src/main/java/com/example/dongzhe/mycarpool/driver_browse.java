@@ -56,7 +56,7 @@ public class driver_browse extends Fragment {
             try {
                 rbk = upload.start("checkbooking|"+d_name);
                 m = 1;
-
+                strarray=rbk.split("\\|");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -72,7 +72,7 @@ public class driver_browse extends Fragment {
                 }
                 else {
                     try{
-                        strarray=rbk.split("\\|");
+
                         System.out.println(rbk);
                         tDate.setText(strarray[0]);
                         tDep.setText(strarray[1]);
