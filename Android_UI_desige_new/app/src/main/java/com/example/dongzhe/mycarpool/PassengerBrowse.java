@@ -21,7 +21,7 @@ public class PassengerBrowse extends Fragment {
     private Handler sendHandler;
 
     Button btn_s,btn1;
-    ImageButton btn_m;
+    Button btn_m;
     EditText et_time,et_from,et_to;
 
     String time=null;
@@ -52,7 +52,8 @@ public class PassengerBrowse extends Fragment {
 
         btn_s=(Button) view.findViewById(R.id.button_p_search);
         btn1=(Button) view.findViewById(R.id.button_pass_car);
-        btn_m=(ImageButton) view.findViewById(R.id.Button_sendmail);
+       // btn_m=(ImageButton) view.findViewById(R.id.Button_sendmail);
+
 
         et_time=(EditText)view.findViewById(R.id.editText_passenger_name) ;
         et_from=(EditText)view.findViewById(R.id.editText_depature) ;
@@ -96,6 +97,8 @@ public class PassengerBrowse extends Fragment {
 
         mail = (TextView)layout.findViewById(R.id.TextView_dia_mail);
         ss = (EditText) layout.findViewById(R.id.editText_sendmail_in);
+
+        btn_m=(Button) layout.findViewById(R.id.Button_sendmail);
 
         TextView t = (TextView)layout.findViewById(R.id.TextView_dia_mail);
         t.setText(mm);

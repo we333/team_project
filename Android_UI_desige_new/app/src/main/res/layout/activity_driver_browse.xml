@@ -74,7 +74,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/Text_passenger_name"
         android:layout_above="@+id/textView25"
         android:layout_alignStart="@+id/Text_depature" />
@@ -83,7 +82,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/Text_date"
         android:layout_alignTop="@+id/textView25"
         android:layout_alignStart="@+id/Text_passenger_name" />
@@ -92,7 +90,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/Text_depature"
         android:layout_marginStart="66dp"
         android:layout_alignTop="@+id/textView21"
@@ -102,7 +99,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/Text_destination"
         android:layout_alignTop="@+id/textView23"
         android:layout_alignStart="@+id/Text_date" />
@@ -111,7 +107,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/Text_command"
         android:layout_alignTop="@+id/textView30"
         android:layout_alignStart="@+id/Text_destination" />

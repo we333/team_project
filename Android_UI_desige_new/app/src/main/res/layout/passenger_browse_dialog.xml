@@ -49,24 +49,23 @@
         android:layout_marginTop="20dp"
         android:layout_weight="0.05">
 
-        <ImageButton
+        <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/Button_sendmail"
-            android:src="@drawable/songxinchuan"
+            android:text="発送"
             android:layout_marginLeft="175dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="80dp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/editText_sendmail_in"
-            android:layout_marginEnd="58dp"
-            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/Button_sendmail"
             android:layout_toStartOf="@+id/Button_sendmail" />
     </RelativeLayout>
 </LinearLayout>
