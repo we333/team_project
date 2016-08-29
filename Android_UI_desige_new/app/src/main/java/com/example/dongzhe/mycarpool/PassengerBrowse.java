@@ -54,8 +54,8 @@ public class PassengerBrowse extends Fragment {
         btn1=(Button) view.findViewById(R.id.button_pass_car);
         btn_m=(ImageButton) view.findViewById(R.id.Button_sendmail);
 
-        et_time=(EditText)view.findViewById(R.id.editText_search_date) ;
-        et_from=(EditText)view.findViewById(R.id.editText_search_from) ;
+        et_time=(EditText)view.findViewById(R.id.editText_passenger_name) ;
+        et_from=(EditText)view.findViewById(R.id.editText_depature) ;
         et_to=(EditText)view.findViewById(R.id.editText_search_to) ;
 
 
