@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Integer res) {
             if(res==1){
                 Intent intent=new Intent(getApplicationContext(),DriverMain.class);
+                intent.putExtra("name",get_n);
                 startActivity(intent);
             }
             else {

@@ -1,23 +1,31 @@
 package com.example.dongzhe.mycarpool;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.layout.simple_spinner_item;
-
 public class DriverRaiseActivity extends Fragment {
+
+    Client send = new Client();
+
+    EditText time,from,to,price,others;
+    Button butt1;
+    String get_time,get_from,get_to,get_price,get_others,get_seat,drivername;
 
     private List<String> list = new ArrayList<String>();
     private TextView myTextView;
@@ -25,14 +33,26 @@ public class DriverRaiseActivity extends Fragment {
     private ArrayAdapter<String> adapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_driver_raise, container, false);
 
-    //第一步：添加一个下拉列表项的list，这里添加的项就是下拉列表的菜单项
+        time = (EditText)view.findViewById(R.id.editText_date) ;
+        from = (EditText)view.findViewById(R.id.editText_kara);
+        to = (EditText)view.findViewById(R.id.editText_made) ;
+        price = (EditText)view.findViewById(R.id.editText_pri) ;
+        others = (EditText)view.findViewById(R.id.editText_comm);
+
+        butt1 = (Button)view.findViewById(R.id.button3);
+
+
+
+        //第一步：添加一个下拉列表项的list，这里添加的项就是下拉列表的菜单项
         list.add("1");
         list.add("2");
         list.add("3");
@@ -87,6 +107,62 @@ public class DriverRaiseActivity extends Fragment {
             }
         });
 
+        butt1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                get_time = time.getText().toString();
+                get_from = from.getText().toString();
+                get_to = to.getText().toString();
+                get_price = price.getText().toString();
+                get_others = others.getText().toString();
+                get_seat = mySpinner.getSelectedItem().toString();
+
+                System.out.println(get_time);
+                System.out.println(get_from);
+                System.out.println(get_to);
+                System.out.println(get_price);
+                System.out.println(get_others);
+                System.out.println(get_seat);
+
+                new bosyu().execute();
+            }
+        });
+
         return view;
+    }
+
+    private class bosyu extends AsyncTask<String,Void,Integer>{
+        String sd;
+        Integer rt=0;
+        @Override
+        protected Integer doInBackground(String... params) {
+            try {
+                Intent intent = getActivity().getIntent();
+                drivername = intent.getStringExtra("name");
+                System.out.println(drivername);
+                sd = send.start("upload|"+drivername+"|"+get_time+"|"+get_from+"|"+get_to+"|"+get_price+"|"+get_seat+"|"+get_others+"|");
+                if(sd.equals("success")){
+                    rt = 1;
+                }
+                else {
+                    rt = 0;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return rt;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            if(rt==1){
+                android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
+                Fragment fragment = new driver_browse();
+                fm.beginTransaction().replace(R.id.content_layout,fragment).commit();
+
+            }else{
+                Toast.makeText(getActivity(),"UserName/PassWord is wrong!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
