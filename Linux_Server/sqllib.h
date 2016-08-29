@@ -204,6 +204,27 @@ public:
 
 		return true;
 	};
+	vector<string> Check_booking(string name)
+	{
+		vector<string> list;
+		pstmt = conn->prepareStatement("SELECT date, start, end, price, seat, comment FROM userinfo where name=(?)");
+		pstmt->setString(1, name);
+		res = pstmt->executeQuery();
+
+		while(res->next())					// 如果存在此拼车信息,则返回true
+		{
+			if(NULL != res)
+			{
+				list.push_back(res->getString("date"));
+				list.push_back(res->getString("start"));
+				list.push_back(res->getString("end"));
+				list.push_back(res->getString("price"));
+				list.push_back(res->getString("seat"));
+				list.push_back(res->getString("comment"));
+			}
+		}
+		return list;
+	}
 	bool Upload(carpool_info info)	// 车主->提交自己拼车信息
 	{
 		pstmt = conn->prepareStatement("UPDATE userinfo set date=(?), start=(?), end=(?), price=(?), seat=(?), comment=(?) where name=(?)");
