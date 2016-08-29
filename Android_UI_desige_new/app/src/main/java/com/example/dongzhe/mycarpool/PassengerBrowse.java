@@ -33,6 +33,7 @@ public class PassengerBrowse extends Fragment {
 
     String [] strarray;
     Client csearch = new Client();
+    Client booking = new Client();
 
     TextView textView1,textView2,textView3,textView4,textView5,textView6,mail;
 
@@ -90,6 +91,25 @@ public class PassengerBrowse extends Fragment {
         return view;
     }
 
+    private class Booking extends AsyncTask<String,Void,Integer>{
+        @Override
+        protected Integer doInBackground(String... params)
+        {
+            try {
+                System.out.println("booking start");
+                String res = booking.start("booking|" + strarray[1] + "|" + strarray[2] + "|" + strarray[3] + "|" + strarray[4]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return 1;
+        }
+
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+        }
+    }
+
     public void init(){
         LayoutInflater inflater=(LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View layout=inflater.inflate(R.layout.passenger_browse_dialog,(ViewGroup)getActivity().findViewById(R.id.LinearLayout1));
@@ -97,6 +117,9 @@ public class PassengerBrowse extends Fragment {
 
         mail = (TextView)layout.findViewById(R.id.TextView_dia_mail);
         ss = (EditText) layout.findViewById(R.id.editText_sendmail_in);
+        TextView idname=(TextView)layout.findViewById(R.id.TextView_di_name);
+
+        idname.setText(strarray[0]);
 
         btn_m=(Button) layout.findViewById(R.id.Button_sendmail);
 
@@ -105,6 +128,9 @@ public class PassengerBrowse extends Fragment {
 
         btn_m.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                new Booking().execute();
+
                 content =ss.getText().toString();
                 SendTask sTask = new SendTask();
                 sTask.execute();
