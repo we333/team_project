@@ -205,6 +205,11 @@ void Search(int sockfd, vector<string> vs)
 		msg += *it + '|';
 	msg += '\n';		// for Android recv, add '\n' at end of string !!!!
 
+	cout<<msg<<endl;
+
+	if(msg == "||||||")
+		{client_reply(sockfd, "noresults\n"); return;}
+
 	client_reply(sockfd, msg.c_str());
 }
 
@@ -241,8 +246,11 @@ void Booking(int sockfd, vector<string> vs)
 void Check_booking(int sockfd, vector<string> vs)
 {
 	vector<string> db_res = wesql.Check_booking(vs[1]);
+	
+/*	donot check size, because checking by usr.name will recv NULL msg, size != 0
 	if(0 == db_res.size())
 		{client_reply(sockfd, "noresults\n"); return;}
+*/
 
 	string msg;
 	vector<string>::iterator it;
@@ -250,11 +258,15 @@ void Check_booking(int sockfd, vector<string> vs)
 		msg += *it + '|';
 	msg += '\n';		// for Android recv, add '\n' at end of string !!!!
 
+	if("||||||\n" == msg)	// if no results from DB 
+		{client_reply(sockfd, "noresults\n"); return;}
+
 	client_reply(sockfd, msg.c_str());
 }
 
 void Send_file_to_client(int sockfd, vector<string> vs)
-{/*
+{
+/*	BUG ?
 	string filename = FILE_PATH + vs[1] + "." + vs[2];
 	int fd = open(filename.c_str(), O_RDONLY);
 
