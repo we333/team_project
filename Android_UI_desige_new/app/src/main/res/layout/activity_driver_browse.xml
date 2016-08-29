@@ -18,7 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="出発地："
         android:id="@+id/textView21"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="61dp"
         android:layout_below="@+id/textView25"
         android:layout_alignStart="@+id/textView23" />
 
@@ -28,7 +28,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="到着地："
         android:id="@+id/textView23"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="69dp"
         android:layout_below="@+id/textView21"
         android:layout_alignStart="@+id/textView30" />
 
@@ -48,10 +48,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="コメント："
         android:id="@+id/textView30"
-        android:layout_marginStart="38dp"
-        android:layout_below="@+id/textView23"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="135dp" />
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="65dp"
+        android:layout_below="@+id/textView35"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,5 +85,50 @@
         android:id="@+id/Text_command"
         android:layout_alignTop="@+id/textView30"
         android:layout_alignStart="@+id/Text_destination" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新する"
+        android:id="@+id/button_update"
+        android:layout_below="@+id/Text_command"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="51dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="値段："
+        android:id="@+id/textView34"
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/textView23"
+        android:layout_alignStart="@+id/textView35" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="座席："
+        android:id="@+id/textView35"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/textView34"
+        android:layout_alignStart="@+id/textView30" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Text_price"
+        android:layout_above="@+id/textView35"
+        android:layout_alignStart="@+id/Text_destination" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Text_seat"
+        android:layout_above="@+id/textView30"
+        android:layout_alignStart="@+id/Text_price" />
 
 </RelativeLayout>

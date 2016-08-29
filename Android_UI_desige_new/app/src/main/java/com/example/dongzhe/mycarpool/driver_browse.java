@@ -13,7 +13,8 @@ import android.widget.TextView;
 
 public class driver_browse extends Fragment {
 
-    TextView tDate,tDep,tDes,tCom;
+    TextView tDate,tDep,tDes,tPri,tSea,tCom;
+    Button btn_u;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,18 @@ public class driver_browse extends Fragment {
         tDate=(TextView)view.findViewById(R.id.Text_date);
         tDep=(TextView)view.findViewById(R.id.Text_depature);
         tDes=(TextView)view.findViewById(R.id.Text_destination);
+        tPri=(TextView)view.findViewById(R.id.Text_price);
+        tSea=(TextView)view.findViewById(R.id.Text_seat);
         tCom=(TextView)view.findViewById(R.id.Text_command);
 
+        btn_u=(Button)view.findViewById(R.id.button_update);
+/*
+        btn_u.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+            }
+        });
+*/
         return view;
 
     }
