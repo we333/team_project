@@ -38,7 +38,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="日付："
         android:id="@+id/textView25"
-        android:layout_marginTop="79dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView21" />
 
