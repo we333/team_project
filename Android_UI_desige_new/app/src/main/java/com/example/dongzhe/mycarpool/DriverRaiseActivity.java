@@ -161,7 +161,7 @@ public class DriverRaiseActivity extends Fragment {
                 fm.beginTransaction().replace(R.id.content_layout,fragment).commit();
 
             }else{
-                Toast.makeText(getActivity(),"UserName/PassWord is wrong!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Please write more information!", Toast.LENGTH_SHORT).show();
             }
         }
     }
